@@ -272,12 +272,12 @@
     </ClCompile>
     <ClCompile Include="Demo_Main.cpp" />
     <ClCompile Include="Enemies\Enemy.cpp" />
+    <ClCompile Include="Enemies\Fighter.cpp" />
+    <ClCompile Include="Enemies\Medic.cpp" />
     <ClCompile Include="Enemies\Paver.cpp" />
-    <ClCompile Include="Fighter.cpp" />
+    <ClCompile Include="Enemies\Shielded.cpp" />
+    <ClCompile Include="Enemies\Wizard.cpp" />
     <ClCompile Include="GUI\GUI.cpp" />
-    <ClCompile Include="Medic.cpp" />
-    <ClCompile Include="Shielded.cpp" />
-    <ClCompile Include="Wizard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
@@ -303,18 +303,18 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jpegint.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jpeglib.h" />
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
+    <ClInclude Include="Data Structures\LinkedList.h" />
+    <ClInclude Include="Data Structures\Node.h" />
+    <ClInclude Include="Data Structures\priorityList.h" />
+    <ClInclude Include="Data Structures\queue.h" />
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Enemies\Enemy.h" />
+    <ClInclude Include="Enemies\Fighter.h" />
+    <ClInclude Include="Enemies\Medic.h" />
     <ClInclude Include="Enemies\Paver.h" />
-    <ClInclude Include="Fighter.h" />
+    <ClInclude Include="Enemies\Shielded.h" />
+    <ClInclude Include="Enemies\Wizard.h" />
     <ClInclude Include="GUI\GUI.h" />
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="Medic.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="priorityList.h" />
-    <ClInclude Include="queue.h" />
-    <ClInclude Include="Shielded.h" />
-    <ClInclude Include="Wizard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

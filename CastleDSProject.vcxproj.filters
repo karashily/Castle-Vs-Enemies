@@ -16,7 +16,7 @@
     <Filter Include="Enemies">
       <UniqueIdentifier>{0af33dc2-c49c-4540-b583-4c48cacf990e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="structures">
+    <Filter Include="Data Structures">
       <UniqueIdentifier>{e7e8849e-3632-45b6-9bee-0a48b107a744}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -146,16 +146,16 @@
     <ClCompile Include="Enemies\Paver.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Shielded.cpp">
+    <ClCompile Include="Enemies\Fighter.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Fighter.cpp">
+    <ClCompile Include="Enemies\Medic.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Medic.cpp">
+    <ClCompile Include="Enemies\Shielded.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Wizard.cpp">
+    <ClCompile Include="Enemies\Wizard.cpp">
       <Filter>Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -237,29 +237,29 @@
     <ClInclude Include="Enemies\Paver.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>structures</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedList.h">
-      <Filter>structures</Filter>
-    </ClInclude>
-    <ClInclude Include="priorityList.h">
-      <Filter>structures</Filter>
-    </ClInclude>
-    <ClInclude Include="queue.h">
-      <Filter>structures</Filter>
-    </ClInclude>
-    <ClInclude Include="Shielded.h">
+    <ClInclude Include="Enemies\Fighter.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Fighter.h">
+    <ClInclude Include="Enemies\Medic.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Medic.h">
+    <ClInclude Include="Enemies\Shielded.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Wizard.h">
+    <ClInclude Include="Enemies\Wizard.h">
       <Filter>Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Data Structures\LinkedList.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Data Structures\Node.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Data Structures\priorityList.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Data Structures\queue.h">
+      <Filter>Data Structures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

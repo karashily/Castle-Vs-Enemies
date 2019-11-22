@@ -1,6 +1,6 @@
 #include "Battle.h"
 #include "GUI\GUI.h"
-#include<Windows.h>
+#include <Windows.h>
 #include <MMSystem.h>
 //#pragma comment(lib, "Winmm.lib")
 int main()
