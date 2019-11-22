@@ -270,7 +270,6 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <ClCompile Include="Demo_Main.cpp" />
     <ClCompile Include="Enemies\Enemy.cpp" />
     <ClCompile Include="Enemies\Fighter.cpp" />
     <ClCompile Include="Enemies\Medic.cpp" />
@@ -278,6 +277,7 @@
     <ClCompile Include="Enemies\Shielded.cpp" />
     <ClCompile Include="Enemies\Wizard.cpp" />
     <ClCompile Include="GUI\GUI.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
