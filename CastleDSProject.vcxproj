@@ -305,8 +305,8 @@
     <ClInclude Include="CMUgraphicsLib\jpeg\jversion.h" />
     <ClInclude Include="Data Structures\LinkedList.h" />
     <ClInclude Include="Data Structures\Node.h" />
-    <ClInclude Include="Data Structures\priorityList.h" />
-    <ClInclude Include="Data Structures\queue.h" />
+    <ClInclude Include="Data Structures\PriorityList.h" />
+    <ClInclude Include="Data Structures\Queue.h" />
     <ClInclude Include="Defs.h" />
     <ClInclude Include="Enemies\Enemy.h" />
     <ClInclude Include="Enemies\Fighter.h" />

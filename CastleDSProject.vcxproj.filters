@@ -255,10 +255,10 @@
     <ClInclude Include="Data Structures\Node.h">
       <Filter>Data Structures</Filter>
     </ClInclude>
-    <ClInclude Include="Data Structures\priorityList.h">
+    <ClInclude Include="Data Structures\PriorityList.h">
       <Filter>Data Structures</Filter>
     </ClInclude>
-    <ClInclude Include="Data Structures\queue.h">
+    <ClInclude Include="Data Structures\Queue.h">
       <Filter>Data Structures</Filter>
     </ClInclude>
   </ItemGroup>
