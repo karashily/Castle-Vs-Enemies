@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::GUI()
 {
-	pWind = new window(WindWidth+15,WindHeight,0,0);
+	pWind = new window(WindWidth, WindHeight, 0 , 0);
 	pWind->ChangeTitle("The Castle Game");
 
 	DrawMenu();
@@ -94,11 +94,11 @@ void GUI::DrawMenu() const
 	//reoder them in enum MenuItem
 	string MenuItemImages[MENU_ITM_COUNT];
 
-	MenuItemImages[LOAD] = "images\\MenuItems\\load.jpg";
-	MenuItemImages[CLICK] = "images\\MenuItems\\click.jpg";
-	MenuItemImages[TIME] = "images\\MenuItems\\time.jpg";
-	MenuItemImages[SILENT] = "images\\MenuItems\\silent.jpg";
-	MenuItemImages[MENU_EXIT] = "images\\MenuItems\\exit.jpg";
+	MenuItemImages[LOAD] = "Assets\\Images\\MenuItems\\load.jpg";
+	MenuItemImages[CLICK] = "Assets\\Images\\MenuItems\\click.jpg";
+	MenuItemImages[TIME] = "Assets\\Images\\MenuItems\\time.jpg";
+	MenuItemImages[SILENT] = "Assets\\Images\\MenuItems\\silent.jpg";
+	MenuItemImages[MENU_EXIT] = "Assets\\Images\\MenuItems\\exit.jpg";
 
 	//
 	//TODO: Prepare images for each menu item (an icon for each modes) and add it to the list
@@ -162,24 +162,26 @@ void GUI::DrawCastle(bool aSilenced, bool bSilenced, bool cSilenced, bool dSilen
 	// 1- Drawing the brown square of the castle
 	pWind->SetPen(BROWN);
 	pWind->SetBrush(BROWN);
+	
+	// Drawing Circles to make the castle with rounded corners
 	pWind->DrawCircle(((-CastleStartX+CastleEndX)/4+CastleStartX),((-CastleStartY+CastleEndY)/4+CastleStartY),(CastleStartX-CastleEndX)/4);
 	pWind->DrawCircle(((-CastleStartX+CastleEndX)/4+CastleStartX),((-CastleStartY+CastleEndY)/4*3+CastleStartY),(CastleStartX-CastleEndX)/4);
 	pWind->DrawCircle(((-CastleStartX+CastleEndX)/4*3+CastleStartX),((-CastleStartY+CastleEndY)/4+CastleStartY),(CastleStartX-CastleEndX)/4);
 	pWind->DrawCircle(((-CastleStartX+CastleEndX)/4*3+CastleStartX),((-CastleStartY+CastleEndY)/4*3+CastleStartY),(CastleStartX-CastleEndX)/4);
-	pWind->DrawRectangle(CastleStartX, CastleStartY+50, CastleEndX, CastleEndY-50);
-	pWind->DrawRectangle(CastleStartX+50, CastleStartY, CastleEndX-50, CastleEndY);
+	
+	// Drawing rectangles to fill the gaps between circules
+	pWind->DrawRectangle(CastleStartX, CastleStartY + 75, CastleEndX, CastleEndY - 75);
+	pWind->DrawRectangle(CastleStartX + 75, CastleStartY, CastleEndX - 75, CastleEndY);
 
 	// 2- Drawing the 2 brown crossed lines (for making 4 regions)
 	pWind->SetPen(BROWN);
 	pWind->DrawLine(0, YHalfBattleArea, WindWidth, YHalfBattleArea);
 	//pWind->DrawLine(WindWidth/2, MenuBarHeight, WindWidth/2, WindHeight-StatusBarHeight);
 
-
 	// 3- Drawing the 2 white crossed lines (inside the castle)
 	pWind->SetPen(WHITE);
 	pWind->DrawLine(WindWidth/2, YHalfBattleArea - CastleWidth/2, WindWidth/2, YHalfBattleArea + CastleWidth/2);
 	pWind->DrawLine(WindWidth/2 - CastleWidth/2, YHalfBattleArea, WindWidth/2 + CastleWidth/2, YHalfBattleArea);
-
 
 	// 5- Writing the letter of each region (A, B, C, D)
 	pWind->SetPen(WHITE);

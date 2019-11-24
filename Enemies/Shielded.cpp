@@ -1,5 +1,5 @@
 #include "Shielded.h"
-#include "Castle\Tower.h"
+#include "..\Castle\Tower.h"
 
 
 Shielded::Shielded(int id , int T, int H,int d, int pow, int Rld ,int attackTime, REGION R, color c,double c1,double c2, double c3,int sp):Enemy(c,R,d,sp)

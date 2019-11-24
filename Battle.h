@@ -2,8 +2,9 @@
 
 #include "Enemies\Enemy.h"
 #include "Castle\Castle.h"
-#include "queue.h"
+#include "DataStructures\queue.h"
 #include <string>
+
 // it is the controller of the project
 class Battle
 {

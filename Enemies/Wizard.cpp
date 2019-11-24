@@ -1,5 +1,5 @@
 #include "Wizard.h"
-#include "Castle\Tower.h"
+#include "..\Castle\Tower.h"
 
 
 Wizard::Wizard(int id, int T, int H, int d, int pow, int Rld,int attcktime, REGION R, color c, int sp) :Enemy(c, R, d, sp)

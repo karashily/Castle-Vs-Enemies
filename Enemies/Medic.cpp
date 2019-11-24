@@ -1,5 +1,5 @@
 #include "Medic.h"
-#include "Castle\Tower.h"
+#include "..\Castle\Tower.h"
 
 Medic::Medic(int id , int T, int H,int D, int pow, int Rld ,int attacktime, REGION R, color c,int sp):Enemy(c,R,D,sp)
 {

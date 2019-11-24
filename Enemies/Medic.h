@@ -1,5 +1,7 @@
 #pragma once
-#include "Enemies\Enemy.h"
+
+#include "Enemy.h"
+
 class Medic :
 	public Enemy
 {

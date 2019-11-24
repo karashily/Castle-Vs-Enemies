@@ -1,11 +1,13 @@
-#include "Battle.h"
 #include <Windows.h>
-#include "Shielded.h"
-#include"Fighter.h"
 #include <fstream>
-#include "Enemies\Paver.h"
-#include "Wizard.h"
 #include <cmath>
+
+#include "Battle.h"
+#include "Enemies\Shielded.h"
+#include "Enemies\Fighter.h"
+#include "Enemies\Paver.h"
+#include "Enemies\Wizard.h"
+
 Battle::Battle()
 {
 	EnemyCount = 0;
@@ -13,19 +15,19 @@ Battle::Battle()
 	warNumber = 1;
 	KilledEnemy = 0;
 	TotalNumberOfEnemys = 0;
-	time_step= 1 ;
+	time_step = 1;
 	totalFD = 0;
 	totalKD = 0;
 }
 
-int Battle :: get_time_step()
+int Battle::get_time_step()
 {
 	return time_step;
 }
 
 void Battle::AddEnemy(Enemy* Ptr)
 {
-	if (EnemyCount < MaxEnemyCount) 
+	if (EnemyCount < MaxEnemyCount)
 		BEnemiesForDraw[EnemyCount++] = Ptr;
 
 	// Note that this function doesn't allocate any enemy objects
@@ -33,17 +35,17 @@ void Battle::AddEnemy(Enemy* Ptr)
 	// points to what is pointed to by the passed pointer Ptr
 }
 
-void Battle::DrawEnemies(GUI * pGUI)
+void Battle::DrawEnemies(GUI* pGUI)
 {
 	pGUI->DrawEnemies(BEnemiesForDraw, EnemyCount);
 }
 
-Castle * Battle::GetCastle()
+Castle* Battle::GetCastle()
 {
 	return &BCastle;
 }
 
-void Battle ::CreateToNewLoad()
+void Battle::CreateToNewLoad()
 {
 	inactive = new queue<Enemy*>;
 
@@ -52,7 +54,7 @@ void Battle ::CreateToNewLoad()
 	warNumber = 1;
 	KilledEnemy = 0;
 	TotalNumberOfEnemys = 0;
-	time_step= 1 ;
+	time_step = 1;
 	totalFD = 0;
 	totalKD = 0;
 	BCastle.CreateTonewLoad();
@@ -62,7 +64,7 @@ void Battle ::CreateToNewLoad()
 bool Battle::load(GUI* pGUI) {
 
 
-	
+
 	CreateToNewLoad();
 	string filename;
 	ifstream input;
@@ -77,7 +79,7 @@ bool Battle::load(GUI* pGUI) {
 	}
 	input.open(filename);
 	double x;
-	double C1,C2,C3;
+	double C1, C2, C3;
 	input >> x;
 	BCastle.SetTowersHealth(x);
 	input >> x;
@@ -85,42 +87,42 @@ bool Battle::load(GUI* pGUI) {
 	input >> x;
 	BCastle.SetTowersFirePower(x);
 	input >> C1 >> C2 >> C3;
-	int S,T,H,POW,RLD,sp;
+	int S, T, H, POW, RLD, sp;
 	char R;
 	input >> x;
 	while (x != -1) {
 		S = (int)x;
-		input >> x >> T >> H >> POW >> RLD >> R>>sp;
+		input >> x >> T >> H >> POW >> RLD >> R >> sp;
 		switch ((int)x)
 		{
 		case 0: {
-			Enemy* newEnemy = new Paver(S, T, H,60+sp, POW, RLD,T,(REGION)(R-65),DARKBLUE,sp);
+			Enemy* newEnemy = new Paver(S, T, H, 60 + sp, POW, RLD, T, (REGION)(R - 65), DARKBLUE, sp);
 			inactive->enqueue(newEnemy);
 			break;
-				}
+		}
 		case 1: {
-			Enemy* newEnemy = new Fighter(S, T, H,60+sp, POW, RLD,T,(REGION)(R-65),DARKOLIVEGREEN,sp);
+			Enemy* newEnemy = new Fighter(S, T, H, 60 + sp, POW, RLD, T, (REGION)(R - 65), DARKOLIVEGREEN, sp);
 			inactive->enqueue(newEnemy);
 			break;
-				}
+		}
 		case 2: {
-			Enemy* newEnemy = new Shielded(S, T, H,60+sp, POW, RLD,T,(REGION)(R-65),ORANGERED,C1,C2,C3,sp);
+			Enemy* newEnemy = new Shielded(S, T, H, 60 + sp, POW, RLD, T, (REGION)(R - 65), ORANGERED, C1, C2, C3, sp);
 			inactive->enqueue(newEnemy);
 			break;
-				}
+		}
 		case 3: {
-			Enemy* newEnemy = new Wizard(S, T, H, 60+sp, POW, RLD,T, (REGION)(R - 65), VIOLETRED, sp);
+			Enemy* newEnemy = new Wizard(S, T, H, 60 + sp, POW, RLD, T, (REGION)(R - 65), VIOLETRED, sp);
 			inactive->enqueue(newEnemy);
 			break;
-				}
+		}
 		case 4: {
 
-			Enemy* newEnemy = new Medic(S, T, H, 60+sp, POW, RLD,-1, (REGION)(R - 65), WHITE, sp);
+			Enemy* newEnemy = new Medic(S, T, H, 60 + sp, POW, RLD, -1, (REGION)(R - 65), WHITE, sp);
 			inactive->enqueue(newEnemy);
 			break;
 
 			break;
-				}
+		}
 		default:
 			break;
 		}
@@ -130,7 +132,7 @@ bool Battle::load(GUI* pGUI) {
 	}
 
 	pGUI->ClearBattleArea(BCastle.get_towers());
-	pGUI->DrawCastle(false,false,false,false);
+	pGUI->DrawCastle(false, false, false, false);
 	total = inactiveCount;
 	return true;
 }
@@ -147,21 +149,21 @@ string Battle::GetFileName(const string & prompt) {
 	return buffer;
 }
 
-void Battle :: Exit()
+void Battle::Exit()
 {
 	BCastle.Exit();
 
 	bool f = true;
 
-	while(f)
+	while (f)
 	{
 
-		f = inactive->dequeue();  
+		f = inactive->dequeue();
 
 	}
 
 	delete inactive;
-	
+
 	//initializing every thing to its default value......
 
 	EnemyCount = 0;
@@ -169,7 +171,7 @@ void Battle :: Exit()
 	warNumber = 1;
 	KilledEnemy = 0;
 	TotalNumberOfEnemys = 0;
-	time_step=1;
+	time_step = 1;
 	totalFD = 0;
 	totalKD = 0;
 
@@ -177,28 +179,28 @@ void Battle :: Exit()
 }
 
 
-void Battle :: mode(GUI* pGUI, MenuItem& actiontype)
+void Battle::mode(GUI * pGUI, MenuItem & actiontype)
 {
 
 
-	if(actiontype == CLICK)
+	if (actiontype == CLICK)
 	{
 		Point p;
 		pGUI->GetPointClicked(p);
 		actiontype = pGUI->getActionType(p);
 	}
 
-	else if(actiontype == TIME)
+	else if (actiontype == TIME)
 	{
 		Sleep(1000);
 	}
 
-	else if(actiontype == MENU_EXIT)
+	else if (actiontype == MENU_EXIT)
 	{
 		Exit();
 	}
 
-	else if(actiontype == LOAD)
+	else if (actiontype == LOAD)
 	{
 		Exit();
 		bool f = load(pGUI);
@@ -206,245 +208,238 @@ void Battle :: mode(GUI* pGUI, MenuItem& actiontype)
 	}
 
 
-	
+
 
 
 
 }
 
-void Battle ::Drawing(GUI* pGUI )
+void Battle::Drawing(GUI * pGUI)
 {
 	pGUI->ClearBattleArea(BCastle.get_towers());
-	pGUI->DrawEnemies(BEnemiesForDraw,drawCount);
-	
+	pGUI->DrawEnemies(BEnemiesForDraw, drawCount);
+
 	bool a = ((BCastle.get_towers())[0]).isSilenced();
 	bool b = ((BCastle.get_towers())[1]).isSilenced();
 	bool c = ((BCastle.get_towers())[2]).isSilenced();
 	bool d = ((BCastle.get_towers())[3]).isSilenced();
-	pGUI->DrawCastle(a,b,c,d);
-	
+	pGUI->DrawCastle(a, b, c, d);
+
 
 }
 
-void Battle :: FromInactiveTothegame()
+void Battle::FromInactiveTothegame()
 {
 
 	Enemy* e;
 
-	if(inactiveCount != 0)
+	if (inactiveCount != 0)
 		e = inactive->queuefront()->getCopy();
 	else
 		return;
 
-	while(e ->getArrivalTime() == time_step && inactiveCount != 0)
+	while (e->getArrivalTime() == time_step && inactiveCount != 0)
 	{
-			bool f = inactive->dequeue();
-			inactiveCount--;
-			BCastle.distribute_ActiveEnemies_On_Towers(e);
-			EnemyCount++;
-			//	e->update_state(time_step);  //updata the state form inactive to active 
-			if(inactiveCount != 0)
-				e = inactive->queuefront()->getCopy();
+		bool f = inactive->dequeue();
+		inactiveCount--;
+		BCastle.distribute_ActiveEnemies_On_Towers(e);
+		EnemyCount++;
+		//	e->update_state(time_step);  //updata the state form inactive to active 
+		if (inactiveCount != 0)
+			e = inactive->queuefront()->getCopy();
 	}
 
 
 }
 
-void Battle :: Printing_sorted_KilledEnemies()
+void Battle::Printing_sorted_KilledEnemies()
 {
-		int m=killed.size();
-		Enemy** karr=killed.ToArr(m);
-		for (int i=0;i<m;i++)
-		{
-			karr[i]->PrintInfoToOutputFile(out);
-			totalFD=totalFD+karr[i]->getFD();
-			totalKD = totalKD + karr[i]->getKD();
-			killed.remove(karr[i]);
-			KilledEnemy++;
-		}
+	int m = killed.size();
+	Enemy** karr = killed.ToArr(m);
+	for (int i = 0; i < m; i++)
+	{
+		karr[i]->PrintInfoToOutputFile(out);
+		totalFD = totalFD + karr[i]->getFD();
+		totalKD = totalKD + karr[i]->getKD();
+		killed.remove(karr[i]);
+		KilledEnemy++;
+	}
 }
 
-void Battle :: fillling_enemiesforDraw(GUI* pGUI )
+void Battle::fillling_enemiesforDraw(GUI * pGUI)
 {
 
- 	    drawCount = 0;
-	    LinkedList<Enemy*>* l1 ;
-		LinkedList<Enemy*>* l3 ;
-		priorityList<Enemy*>* l2 ;
-		for(int i=0;i<NoOfRegions ;i++)
+	drawCount = 0;
+	LinkedList<Enemy*>* l1;
+	LinkedList<Enemy*>* l3;
+	priorityList<Enemy*>* l2;
+	for (int i = 0; i < NoOfRegions; i++)
+	{
+		l1 = BCastle.getTower(i).getlist1();
+		l2 = BCastle.getTower(i).getlist2();
+		l3 = BCastle.getTower(i).getlist3();
+		total += l1->size() + l2->size() + l3->size(); //number of enemies 
+		Enemy** arr1 = l1->ToArr(l1->size());
+		Enemy** arr2 = l2->ToArr(l2->size());
+		Enemy** arr3 = l3->ToArr(l3->size());
+		pGUI->Printinteger(l1->size() + l2->size(), 150 + i * 400, 1000 - 70);
+		pGUI->Printinteger(BCastle.getTower(i).getCkilled(), 150 + i * 400, 1000 - 100);
+		pGUI->PrintMessageString("# killed", 100 + i * 400, 1000 - 100);
+		pGUI->PrintMessageString("# active", 100 + i * 400, 1000 - 70);
+		if (i != 3)
+			pGUI->DrawLine((i + 1) * 400, 550, (i + 1) * 400, 1000 - 70);
+
+		int count = 0;
+		if (i == 0)
 		{
-			l1 = BCastle.getTower(i).getlist1();
-			l2 = BCastle.getTower(i).getlist2();
-			l3 = BCastle.getTower(i).getlist3();
-			total += l1->size()+l2->size()+l3->size(); //number of enemies 
-			Enemy** arr1 = l1->ToArr(l1->size());
-			Enemy** arr2 = l2->ToArr(l2->size());
-			Enemy** arr3 = l3->ToArr(l3->size());
-			pGUI->Printinteger(l1->size()+l2->size(),150+i*400,1000-50);
-			pGUI->Printinteger(BCastle.getTower(i).getCkilled(),150+i*400,1000-100);
-			pGUI->PrintMessageString("# killed",50+i*400,1000-100);
-			pGUI->PrintMessageString("# active",50+i*400,1000-50);
-			if(i!=3)
-				pGUI->DrawLine(60+(i+1)*380,550, 60+(i+1)*380,1000-50);
+			pGUI->PrintMessageString("REGION A", 50 + i * 400, 520);
+			pGUI->PrintMessageString("H", 100 + i * 400, 550);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
+			pGUI->PrintMessageString("Tower A :", 50 + i * 400, 570);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
 
-			int count=0;
-			if(i==0)
-			{
-				pGUI->PrintMessageString("REGION A" ,50+i*400,520 );
-				pGUI->PrintMessageString("H" , 100+i*400,550);
-				pGUI->PrintMessageString("Pow" , 100+i*400+30,550);
-				pGUI->PrintMessageString("n" , 100+i*400+60,550);
-				pGUI->PrintMessageString("unpaved" , 100+i*400+90,550);
-				pGUI->PrintMessageString("Tower A :",50+i*400,570 );
-				pGUI->PrintMessageString("ID" , 100+i*400,600);
-				pGUI->PrintMessageString("Di" , 100+i*400+30,600);
-				pGUI->PrintMessageString("H" , 100+i*400+60,600);
-				pGUI->PrintMessageString("pow" , 100+i*400+90,600);
-				pGUI->PrintMessageString("sp" , 100+i*400+120,600);
-				pGUI->PrintMessageString("A_t" , 100+i*400+150,600);
-				pGUI->PrintMessageString("RL" , 100+i*400+180,600);
-				pGUI->PrintMessageString("Arr_T" , 100+i*400+210,600);
-
-			}
-			else if(i==1)
-			{
-				pGUI->PrintMessageString("REGION B" ,100+i*400,520 );
-				pGUI->PrintMessageString("H" , 100+i*400,550);
-				pGUI->PrintMessageString("Pow" , 100+i*400+30,550);
-				pGUI->PrintMessageString("n" , 100+i*400+60,550);
-				pGUI->PrintMessageString("unpaved" , 100+i*400+90,550);
-				pGUI->PrintMessageString("Tower B:",50+i*400,570 );
-				pGUI->PrintMessageString("ID" , 100+i*400,600);
-				pGUI->PrintMessageString("Di" , 100+i*400+30,600);
-				pGUI->PrintMessageString("H" , 100+i*400+60,600);
-				pGUI->PrintMessageString("pow" , 100+i*400+90,600);
-				pGUI->PrintMessageString("sp" , 100+i*400+120,600);
-				pGUI->PrintMessageString("A_t" , 100+i*400+150,600);
-				pGUI->PrintMessageString("RL" , 100+i*400+180,600);
-				pGUI->PrintMessageString("Arr_T" , 100+i*400+210,600);
-
-			}
-			else if(i==2)
-			{
-				pGUI->PrintMessageString("REGION C" ,100+i*400,520 );
-				pGUI->PrintMessageString("H" , 100+i*400,550);
-				pGUI->PrintMessageString("Pow" , 100+i*400+30,550);
-				pGUI->PrintMessageString("n" , 100+i*400+60,550);
-				pGUI->PrintMessageString("unpaved" , 100+i*400+90,550);
-				pGUI->PrintMessageString("Tower C :",50+i*400,570 );
-				pGUI->PrintMessageString("ID" , 100+i*400,600);
-				pGUI->PrintMessageString("Di" , 100+i*400+30,600);
-				pGUI->PrintMessageString("H" , 100+i*400+60,600);
-				pGUI->PrintMessageString("pow" , 100+i*400+90,600);
-				pGUI->PrintMessageString("sp" , 100+i*400+120,600);
-				pGUI->PrintMessageString("A_t" , 100+i*400+150,600);
-				pGUI->PrintMessageString("RL" , 100+i*400+180,600);
-				pGUI->PrintMessageString("Arr_T" , 100+i*400+210,600);
-			}
-
-			else
-			{
-				pGUI->PrintMessageString("REGION D" ,80+i*400,520 );
-				pGUI->PrintMessageString("H" , 100+i*400,550);
-				pGUI->PrintMessageString("Pow" , 100+i*400+30,550);
-				pGUI->PrintMessageString("n" , 100+i*400+60,550);
-				pGUI->PrintMessageString("unpaved" , 100+i*400+90,550);
-				pGUI->PrintMessageString("Tower D :",10+i*400,570 );
-				pGUI->PrintMessageString("ID" , 50+i*400,600);
-				pGUI->PrintMessageString("Di" , 50+i*400+30,600);
-				pGUI->PrintMessageString("H" , 50+i*400+60,600);
-				pGUI->PrintMessageString("pow" , 50+i*400+90,600);
-				pGUI->PrintMessageString("sp" , 50+i*400+120,600);
-				pGUI->PrintMessageString("A_t" , 50+i*400+150,600);
-				pGUI->PrintMessageString("RL" , 50+i*400+180,600);
-				pGUI->PrintMessageString("Arr_T" , 50+i*400+210,600);
-
-			}
-
-			
-			
-			pGUI->Printinteger(ceil(BCastle.getTower(i).GetHealth()),100+i*400,570);
-			pGUI->Printinteger(BCastle.getTower(i).getFirePower(),130+i*400,570);
-			pGUI->Printinteger(BCastle.getTower(i).getTargetsPerShot(),160+i*400,570);
-			pGUI->Printinteger(BCastle.getTower(i).getUnpavedArea(),200+i*400,570);
-
-			for(int j=0;j<l1->size();j++)
-			{
-				BEnemiesForDraw[drawCount++]=arr1[j];
-				
-				if(dynamic_cast<Paver*>(arr1[j]))
-					pGUI->PrintMessageString("Paver :",50+i*400,600+(count+1)*25 );
-				else if(dynamic_cast<Fighter*>(arr1[j]))
-					pGUI->PrintMessageString("Fighter :",50+i*400,600 +(count+1)*25 );
-
-				arr1[j]->PrintInfo(pGUI , 50+i*400,(600) +(count+1)*25);
-				count++;//convert from j to count
-
-
-
-			}
-
-			for(int j=0;j<l2->size();j++)
-			{
-				BEnemiesForDraw[drawCount++]=arr2[j];
-
-				pGUI->PrintMessageString("Shielded :",50+i*400,600 +(count+1)*25 );
-				arr2[j]->PrintInfo(pGUI , 50+i*400,(600) +(count+1)*25);
-				count++;
-			}
-
-
-			for(int j=0;j<l3->size();j++)
-			{
-				BEnemiesForDraw[drawCount++]=arr3[j];
-
-				if(dynamic_cast<Medic*>(arr3[j]))
-					pGUI->PrintMessageString("Medic :",50+i*400,600 +(count+1)*25 );
-				else if(dynamic_cast<Wizard*>(arr3[j]))
-					pGUI->PrintMessageString("Wizrad :",50+i*400,600 +(count+1)*25 );
-
-				arr3[j]->PrintInfo(pGUI , 50+i*400,(600) +(count+1)*25);
-				count++;
-			}
 		}
+		else if (i == 1)
+		{
+			pGUI->PrintMessageString("REGION B", 100 + i * 400, 520);
+			pGUI->PrintMessageString("H", 100 + i * 400, 550);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
+			pGUI->PrintMessageString("Tower B:", 50 + i * 400, 570);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
+
+		}
+		else if (i == 2)
+		{
+			pGUI->PrintMessageString("REGION C", 100 + i * 400, 520);
+			pGUI->PrintMessageString("H", 100 + i * 400, 550);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
+			pGUI->PrintMessageString("Tower C :", 50 + i * 400, 570);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
+		}
+
+		else
+		{
+			pGUI->PrintMessageString("REGION D", 100 + i * 400, 520);
+			pGUI->PrintMessageString("H", 100 + i * 400, 550);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
+			pGUI->PrintMessageString("Tower D :", 50 + i * 400, 570);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
+
+		}
+
+
+
+		pGUI->Printinteger(ceil(BCastle.getTower(i).GetHealth()), 100 + i * 400, 570);
+		pGUI->Printinteger(BCastle.getTower(i).getFirePower(), 130 + i * 400, 570);
+		pGUI->Printinteger(BCastle.getTower(i).getTargetsPerShot(), 160 + i * 400, 570);
+		pGUI->Printinteger(BCastle.getTower(i).getUnpavedArea(), 200 + i * 400, 570);
+
+		for (int j = 0; j < l1->size(); j++)
+		{
+			BEnemiesForDraw[drawCount++] = arr1[j];
+
+			if (dynamic_cast<Paver*>(arr1[j]))
+				pGUI->PrintMessageString("Paver :", 50 + i * 400, 600 + (count + 1) * 25);
+			else if (dynamic_cast<Fighter*>(arr1[j]))
+				pGUI->PrintMessageString("Fighter :", 50 + i * 400, 600 + (count + 1) * 25);
+
+			arr1[j]->PrintInfo(pGUI, 100 + i * 400, (600) + (count + 1) * 25);
+			count++;//convert from j to count
+
+		}
+
+		for (int j = 0; j < l2->size(); j++)
+		{
+			BEnemiesForDraw[drawCount++] = arr2[j];
+
+			pGUI->PrintMessageString("Shielded :", 50 + i * 400, 600 + (count + 1) * 25);
+			arr2[j]->PrintInfo(pGUI, 100 + i * 400, (600) + (count + 1) * 25);
+			count++;
+		}
+
+
+		for (int j = 0; j < l3->size(); j++)
+		{
+			BEnemiesForDraw[drawCount++] = arr3[j];
+
+			if (dynamic_cast<Medic*>(arr3[j]))
+				pGUI->PrintMessageString("Medic :", 50 + i * 400, 600 + (count + 1) * 25);
+			else if (dynamic_cast<Wizard*>(arr3[j]))
+				pGUI->PrintMessageString("Wizard :", 50 + i * 400, 600 + (count + 1) * 25);
+
+			arr3[j]->PrintInfo(pGUI, 100 + i * 400, (600) + (count + 1) * 25);
+			count++;
+		}
+	}
 
 }
 
-void Battle :: start()
+void Battle::start()
 {
-	sndPlaySound("project sound.wav", SND_FILENAME | SND_ASYNC);//If you don't want to wait until the playback is over
+	sndPlaySound("Assets//Sounds//background_sound.wav", SND_FILENAME | SND_ASYNC);//If you don't want to wait until the playback is over
 
 	createFileOutput();
 
-	GUI* pGUI = new GUI;
+	GUI * pGUI = new GUI;
 	bool f = load(pGUI);  //loading.......
 
-	MenuItem actiontype = CLICK ;  // click mode by default..
+	MenuItem actiontype = CLICK;  // click mode by default..
 
-	
-	 
-	while(!BCastle.damaged() && total != 0 ) // start........................
+	while (!BCastle.damaged() && total != 0) // start........................
 	{
 
-		   
-		
+		mode(pGUI, actiontype); 		   // changing mode....&& drawing......
 
-        mode(pGUI,actiontype); 		   // changing mode....&& drawing......
-
-		if(actiontype == MENU_EXIT)
+		if (actiontype == MENU_EXIT)
 			break;
 
 		FromInactiveTothegame();  //moving enemies from inactive to active....
 
 		total = inactiveCount;
 
-		BCastle.getAttacked(this,time_step);  //active enemies will attack......
+		BCastle.getAttacked(this, time_step);  //active enemies will attack......
 
-		if(!BCastle.damaged())
-			BCastle.Attack(this,time_step);  //castle will attack if itsn't damaged....
+		if (!BCastle.damaged())
+			BCastle.Attack(this, time_step);  //castle will attack if itsn't damaged....
 
 		//printing the killed enemies in this time step then removing them.......
-		
+
 		Printing_sorted_KilledEnemies();
 
 
@@ -452,11 +447,11 @@ void Battle :: start()
 
 		// fillling enemiesforDraw array and writing info in status bar 
 
-		fillling_enemiesforDraw(pGUI );
+		fillling_enemiesforDraw(pGUI);
 
 		//drawing enemies..............
 
-		if(actiontype != SILENT && actiontype != MENU_EXIT)
+		if (actiontype != SILENT && actiontype != MENU_EXIT)
 			Drawing(pGUI);
 
 		time_step++;
@@ -465,14 +460,14 @@ void Battle :: start()
 	printWarResult();
 }
 
-void Battle::AddtoKilled(Enemy* e)
+void Battle::AddtoKilled(Enemy * e)
 {
 	killed.add(e);
 }
 
 
 void Battle::createFileOutput() {
-	string fileName = "The Result Of Number " + warNumber ;
+	string fileName = "Results/The Result Of Number " + warNumber;
 	fileName = fileName + ".txt";
 	out.open(fileName);
 	out.clear();

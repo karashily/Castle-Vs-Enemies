@@ -16,7 +16,7 @@
     <Filter Include="Enemies">
       <UniqueIdentifier>{0af33dc2-c49c-4540-b583-4c48cacf990e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Data Structures">
+    <Filter Include="DataStructures">
       <UniqueIdentifier>{e7e8849e-3632-45b6-9bee-0a48b107a744}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -249,17 +249,17 @@
     <ClInclude Include="Enemies\Wizard.h">
       <Filter>Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Data Structures\LinkedList.h">
-      <Filter>Data Structures</Filter>
+    <ClInclude Include="DataStructures\LinkedList.h">
+      <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="Data Structures\Node.h">
-      <Filter>Data Structures</Filter>
+    <ClInclude Include="DataStructures\Node.h">
+      <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="Data Structures\PriorityList.h">
-      <Filter>Data Structures</Filter>
+    <ClInclude Include="DataStructures\PriorityList.h">
+      <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="Data Structures\Queue.h">
-      <Filter>Data Structures</Filter>
+    <ClInclude Include="DataStructures\Queue.h">
+      <Filter>DataStructures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

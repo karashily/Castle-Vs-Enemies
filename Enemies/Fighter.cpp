@@ -1,5 +1,5 @@
 #include "Fighter.h"
-#include "Castle\Tower.h"
+#include "..\Castle\Tower.h"
 
 Fighter::Fighter(int id , int T, int H,int d, int pow, int Rld ,int attacktime, REGION R, color c,int sp):Enemy(c,R,d,sp)
 {

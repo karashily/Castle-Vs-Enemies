@@ -1,11 +1,11 @@
 #pragma once
-#include "../LinkedList.h"
-#include "../priorityList.h"
-#include "../Shielded.h"
-#include "../Medic.h"
-#include "../fighter.h"
+#include "../DataStructures/LinkedList.h"
+#include "../DataStructures/priorityList.h"
+#include "../Enemies/Shielded.h"
+#include "../Enemies/Medic.h"
+#include "../Enemies/fighter.h"
 #include "../Enemies/Paver.h"
-#include "../Wizard.h"
+#include "../Enemies/Wizard.h"
 class Battle;
 
 class Tower
