@@ -1,6 +1,10 @@
 #include <Windows.h>
 #include <fstream>
 #include <cmath>
+#include <chrono>
+#include <string>
+using namespace std::chrono;
+
 
 #include "Battle.h"
 #include "Enemies\Shielded.h"
@@ -282,104 +286,103 @@ void Battle::fillling_enemiesforDraw(GUI * pGUI)
 		Enemy** arr1 = l1->ToArr(l1->size());
 		Enemy** arr2 = l2->ToArr(l2->size());
 		Enemy** arr3 = l3->ToArr(l3->size());
-		pGUI->Printinteger(l1->size() + l2->size(), 150 + i * 400, 1000 - 70);
-		pGUI->Printinteger(BCastle.getTower(i).getCkilled(), 150 + i * 400, 1000 - 100);
-		pGUI->PrintMessageString("# killed", 100 + i * 400, 1000 - 100);
-		pGUI->PrintMessageString("# active", 100 + i * 400, 1000 - 70);
+		pGUI->Printinteger(l1->size() + l2->size(), 150 + i * 400, 900 - 10);
+		pGUI->Printinteger(BCastle.getTower(i).getCkilled(), 150 + i * 400, 900 - 40);
+		pGUI->PrintMessageString("# killed", 100 + i * 400, 900 - 40);
+		pGUI->PrintMessageString("# active", 100 + i * 400, 900 - 10);
 		if (i != 3)
-			pGUI->DrawLine((i + 1) * 400, 550, (i + 1) * 400, 1000 - 70);
+			pGUI->DrawLine((i + 1) * 400, 520, (i + 1) * 400, 950 - 30);
 
 		int count = 0;
 		if (i == 0)
 		{
-			pGUI->PrintMessageString("REGION A", 50 + i * 400, 520);
-			pGUI->PrintMessageString("H", 100 + i * 400, 550);
-			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
-			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
-			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
-			pGUI->PrintMessageString("Tower A :", 50 + i * 400, 570);
-			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
-			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
-			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
-			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
-			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
-			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
-			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
-			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
+			pGUI->PrintMessageString("REGION A", 50 + i * 400, 490);
+			pGUI->PrintMessageString("H", 100 + i * 400, 520);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 520);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 520);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 520);
+			pGUI->PrintMessageString("Tower A :", 50 + i * 400, 550);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 580);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 580);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 580);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 580);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 580);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 580);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 580);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 580);
 
 		}
 		else if (i == 1)
 		{
-			pGUI->PrintMessageString("REGION B", 100 + i * 400, 520);
-			pGUI->PrintMessageString("H", 100 + i * 400, 550);
-			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
-			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
-			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
-			pGUI->PrintMessageString("Tower B:", 50 + i * 400, 570);
-			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
-			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
-			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
-			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
-			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
-			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
-			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
-			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
-
+			pGUI->PrintMessageString("REGION B", 50 + i * 400, 490);
+			pGUI->PrintMessageString("H", 100 + i * 400, 520);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 520);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 520);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 520);
+			pGUI->PrintMessageString("Tower B:", 50 + i * 400, 550);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 580);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 580);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 580);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 580);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 580);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 580);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 580);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 580);
 		}
 		else if (i == 2)
 		{
-			pGUI->PrintMessageString("REGION C", 100 + i * 400, 520);
-			pGUI->PrintMessageString("H", 100 + i * 400, 550);
-			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
-			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
-			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
-			pGUI->PrintMessageString("Tower C :", 50 + i * 400, 570);
-			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
-			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
-			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
-			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
-			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
-			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
-			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
-			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
+			pGUI->PrintMessageString("REGION C", 50 + i * 400, 490);
+			pGUI->PrintMessageString("H", 100 + i * 400, 520);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 520);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 520);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 520);
+			pGUI->PrintMessageString("Tower C :", 50 + i * 400, 550);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 580);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 580);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 580);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 580);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 580);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 580);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 580);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 580);
 		}
 
 		else
 		{
-			pGUI->PrintMessageString("REGION D", 100 + i * 400, 520);
-			pGUI->PrintMessageString("H", 100 + i * 400, 550);
-			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 550);
-			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 550);
-			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 550);
-			pGUI->PrintMessageString("Tower D :", 50 + i * 400, 570);
-			pGUI->PrintMessageString("ID", 100 + i * 400, 600);
-			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 600);
-			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 600);
-			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 600);
-			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 600);
-			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 600);
-			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 600);
-			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 600);
+			pGUI->PrintMessageString("REGION D", 50 + i * 400, 490);
+			pGUI->PrintMessageString("H", 100 + i * 400, 520);
+			pGUI->PrintMessageString("Pow", 100 + i * 400 + 30, 520);
+			pGUI->PrintMessageString("n", 100 + i * 400 + 60, 520);
+			pGUI->PrintMessageString("unpaved", 100 + i * 400 + 90, 520);
+			pGUI->PrintMessageString("Tower D :", 50 + i * 400, 550);
+			pGUI->PrintMessageString("ID", 100 + i * 400, 580);
+			pGUI->PrintMessageString("Di", 100 + i * 400 + 30, 580);
+			pGUI->PrintMessageString("H", 100 + i * 400 + 60, 580);
+			pGUI->PrintMessageString("pow", 100 + i * 400 + 90, 580);
+			pGUI->PrintMessageString("sp", 100 + i * 400 + 120, 580);
+			pGUI->PrintMessageString("A_t", 100 + i * 400 + 150, 580);
+			pGUI->PrintMessageString("RL", 100 + i * 400 + 180, 580);
+			pGUI->PrintMessageString("Arr_T", 100 + i * 400 + 210, 580);
 
 		}
 
 
 
-		pGUI->Printinteger(ceil(BCastle.getTower(i).GetHealth()), 100 + i * 400, 570);
-		pGUI->Printinteger(BCastle.getTower(i).getFirePower(), 130 + i * 400, 570);
-		pGUI->Printinteger(BCastle.getTower(i).getTargetsPerShot(), 160 + i * 400, 570);
-		pGUI->Printinteger(BCastle.getTower(i).getUnpavedArea(), 200 + i * 400, 570);
+		pGUI->Printinteger(ceil(BCastle.getTower(i).GetHealth()), 100 + i * 400, 550);
+		pGUI->Printinteger(BCastle.getTower(i).getFirePower(), 130 + i * 400, 550);
+		pGUI->Printinteger(BCastle.getTower(i).getTargetsPerShot(), 160 + i * 400, 550);
+		pGUI->Printinteger(BCastle.getTower(i).getUnpavedArea(), 200 + i * 400, 550);
 
 		for (int j = 0; j < l1->size(); j++)
 		{
 			BEnemiesForDraw[drawCount++] = arr1[j];
 
 			if (dynamic_cast<Paver*>(arr1[j]))
-				pGUI->PrintMessageString("Paver :", 50 + i * 400, 600 + (count + 1) * 25);
+				pGUI->PrintMessageString("Paver :", 50 + i * 400, 580 + (count + 1) * 25);
 			else if (dynamic_cast<Fighter*>(arr1[j]))
-				pGUI->PrintMessageString("Fighter :", 50 + i * 400, 600 + (count + 1) * 25);
+				pGUI->PrintMessageString("Fighter :", 50 + i * 400, 580 + (count + 1) * 25);
 
-			arr1[j]->PrintInfo(pGUI, 100 + i * 400, (600) + (count + 1) * 25);
+			arr1[j]->PrintInfo(pGUI, 100 + i * 400, (580) + (count + 1) * 25);
 			count++;//convert from j to count
 
 		}
@@ -388,8 +391,8 @@ void Battle::fillling_enemiesforDraw(GUI * pGUI)
 		{
 			BEnemiesForDraw[drawCount++] = arr2[j];
 
-			pGUI->PrintMessageString("Shielded :", 50 + i * 400, 600 + (count + 1) * 25);
-			arr2[j]->PrintInfo(pGUI, 100 + i * 400, (600) + (count + 1) * 25);
+			pGUI->PrintMessageString("Shielded :", 50 + i * 400, 580 + (count + 1) * 25);
+			arr2[j]->PrintInfo(pGUI, 100 + i * 400, (580) + (count + 1) * 25);
 			count++;
 		}
 
@@ -399,11 +402,11 @@ void Battle::fillling_enemiesforDraw(GUI * pGUI)
 			BEnemiesForDraw[drawCount++] = arr3[j];
 
 			if (dynamic_cast<Medic*>(arr3[j]))
-				pGUI->PrintMessageString("Medic :", 50 + i * 400, 600 + (count + 1) * 25);
+				pGUI->PrintMessageString("Medic :", 50 + i * 400, 580 + (count + 1) * 25);
 			else if (dynamic_cast<Wizard*>(arr3[j]))
-				pGUI->PrintMessageString("Wizard :", 50 + i * 400, 600 + (count + 1) * 25);
+				pGUI->PrintMessageString("Wizard :", 50 + i * 400, 580 + (count + 1) * 25);
 
-			arr3[j]->PrintInfo(pGUI, 100 + i * 400, (600) + (count + 1) * 25);
+			arr3[j]->PrintInfo(pGUI, 100 + i * 400, (580) + (count + 1) * 25);
 			count++;
 		}
 	}
@@ -412,7 +415,7 @@ void Battle::fillling_enemiesforDraw(GUI * pGUI)
 
 void Battle::start()
 {
-	sndPlaySound("Assets//Sounds//background_sound.wav", SND_FILENAME | SND_ASYNC);//If you don't want to wait until the playback is over
+	sndPlaySound("Assets//Sounds//bfx.wav", SND_FILENAME | SND_ASYNC);//If you don't want to wait until the playback is over
 
 	createFileOutput();
 
@@ -467,12 +470,12 @@ void Battle::AddtoKilled(Enemy * e)
 
 
 void Battle::createFileOutput() {
-	string fileName = "Results/The Result Of Number " + warNumber;
+	unsigned __int64 now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	string fileName = "Results/" + to_string(now);
 	fileName = fileName + ".txt";
 	out.open(fileName);
 	out.clear();
 	out << "KTS  S  FD  KD  LT" << endl;
-	warNumber++;
 }
 
 

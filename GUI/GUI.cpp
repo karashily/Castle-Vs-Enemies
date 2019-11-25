@@ -3,14 +3,14 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::GUI()
 {
-	pWind = new window(WindWidth, WindHeight, 0 , 0);
+	pWind = new window(WindWidth, WindHeight, 0, 0);
 	pWind->ChangeTitle("The Castle Game");
 
 	DrawMenu();
 
 	ClearStatusBar();
 	//ClearBattleArea();
-	DrawCastle(false,false,false,false);
+	DrawCastle(false, false, false, false);
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
